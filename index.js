@@ -1,4 +1,3 @@
-const fs = require('fs');
 const { ADDRGETNETWORKPARAMS } = require('dns');
 const CheckColor = require('./lib/CheckColor')
 const { CreateSVG, Circle, Square, Tringle } = require('./lib/createSVG')
@@ -65,10 +64,7 @@ class ColorChoice {
             return ask()
         } else {
             let createFile = new CreateSVG(this.name, this.textColor, this.shape, this.shapeColor)
-            let file = createFile.shapeChoice()
-            console.log(file);
-            // fs.writeFile('logo.svg', `${createFile.shapeChoice()}`, (err) => 
-            // err ? console.error(err) : console.log('Commit logged!'))
+            createFile.shapeChoice()
         }
     }
 }
