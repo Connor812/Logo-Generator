@@ -36,13 +36,5 @@ describe('index', () => {
             
         });
     });
-    // describe('testBothColorsOkay', () => {
-    //     it('Should pass because both colors are correct.', () => {
-    //         const result = console.log('All answers valid!');
-    //         const index = new ColorChoice('Con', 'red', 'circle', 'blue');
-    //         expect(index.colorChoice()).toEqual(result)
-            
-    //     });
-    // });
 });
 
