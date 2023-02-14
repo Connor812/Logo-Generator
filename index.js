@@ -48,8 +48,6 @@ class ColorChoice {
     colorChoice() {
         let textColor = this.textColor.replace(/\s/g, '').toLowerCase()
         let shapeColor = this.shapeColor.replace(/\s/g, '').toLowerCase()
-        console.log(textColor)
-        console.log(shapeColor)
         let textCheck = new CheckColor(textColor)
         let shapeCheck = new CheckColor(shapeColor)
         let textResult = textCheck.checkColor()
@@ -70,7 +68,6 @@ class ColorChoice {
             console.log('All answers valid!');
             let createFile = new CreateSVG(this.name, textColor, this.shape, shapeColor)
             let logoSVG = createFile.shapeChoice()
-            console.log(logoSVG)
             let render = new RenderLogo(logoSVG)
             render.renderFile()
         }
