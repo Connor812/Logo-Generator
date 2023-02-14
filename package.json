@@ -7,7 +7,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest --runInBand --detectOpenHandles --forceExit"
   },
   "repository": {
     "type": "git",
@@ -23,5 +23,8 @@
   "dependencies": {
     "inquirer": "^8.2.4",
     "inquirer-maxlength-input-prompt": "^1.0.2"
+  },
+  "devDependencies": {
+    "jest": "^29.4.2"
   }
 }

@@ -1,6 +1,6 @@
 const { ADDRGETNETWORKPARAMS } = require('dns');
 const CheckColor = require('./lib/CheckColor')
-const { CreateSVG, Circle, Square, Tringle } = require('./lib/createSVG')
+const { CreateSVG, Circle, Square, Triangle, RenderLogo } = require('./lib/createSVG')
 const inquirer = require('inquirer');
 const MaxLengthInputPrompt = require('inquirer-maxlength-input-prompt');
 const { result } = require('lodash');
@@ -46,27 +46,37 @@ class ColorChoice {
         this.shapeColor = shapeColor
     }
     colorChoice() {
-        let textCheck = new CheckColor(this.textColor)
-        let shapeCheck = new CheckColor(this.shapeColor)
+        let textColor = this.textColor.replace(/\s/g, '').toLowerCase()
+        let shapeColor = this.shapeColor.replace(/\s/g, '').toLowerCase()
+        console.log(textColor)
+        console.log(shapeColor)
+        let textCheck = new CheckColor(textColor)
+        let shapeCheck = new CheckColor(shapeColor)
         let textResult = textCheck.checkColor()
         let shapeResult = shapeCheck.checkColor()
         if (textResult == undefined && shapeResult == undefined) {
             console.error('Error: Invalid text and shape color. Please try again.')
-            return ask();
+            return;
         } else if (textResult == undefined) {
             console.error('Error: Invalid text color. Please try again.')
-            return ask()
+            return;
         } else if (shapeResult == undefined) {
             console.error('Error: Invalid shape color. Please try again.')
-            return ask()
+            return;
         } else if (this.textColor == this.shapeColor) {
-            console.log('Error: Text and Shape color cannot be the same. Please try again.')
-            return ask()
+            console.error('Error: Text and Shape color cannot be the same. Please try again.')
+            return;
         } else {
-            let createFile = new CreateSVG(this.name, this.textColor, this.shape, this.shapeColor)
-            createFile.shapeChoice()
+            console.log('All answers valid!');
+            let createFile = new CreateSVG(this.name, textColor, this.shape, shapeColor)
+            let logoSVG = createFile.shapeChoice()
+            console.log(logoSVG)
+            let render = new RenderLogo(logoSVG)
+            render.renderFile()
         }
     }
 }
 
-ask()
+ask();
+
+module.exports = ColorChoice;
